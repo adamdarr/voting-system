@@ -1,5 +1,5 @@
-import java.io.IOException;
-import java.net.Socket;
+import java.io.*;
+import java.net.*;
 import java.util.stream.Collectors;
 
 /**
@@ -84,9 +84,20 @@ public class SISTask implements Runnable {
      */
     void ProcessMsg(KeyValueList kvList) throws Exception {
 		if(kvList.size()>0){
-			System.out.println("====================");
-		System.out.println(kvList);
-		System.out.println("====================");
+
+    		System.out.println("====================");
+    		System.out.println(kvList);
+    		System.out.println("====================");
+
+            String host = "localhost";
+            int port = 7999;
+            InetAddress address = InetAddress.getByName(host);
+            Socket socket = new Socket(address, port);
+
+            //System.out.println("Here");
+
+            MsgEncoder encoder = new MsgEncoder(socket.getOutputStream());
+            encoder.sendMsg(kvList);
 		}
 		
         String scope = kvList.getValue("Scope");

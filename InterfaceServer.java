@@ -137,7 +137,11 @@ if (strMsg==null) return null;
 KeyValueList kvList = new KeyValueList(); 
 StringTokenizer st = new StringTokenizer(strMsg,delimiter);
 while (st.hasMoreTokens()) {
-kvList.addPair(st.nextToken(),st.nextToken());
+  String firstToken = st.nextToken();
+
+  if(st.hasMoreTokens()) {
+    kvList.addPair(firstToken,st.nextToken());
+  }
 }
 return kvList;
 }
