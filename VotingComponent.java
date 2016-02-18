@@ -86,17 +86,20 @@ public class VotingComponent implements ComponentBase{
       case 701: // Cast Vote
         String voterPhone = kvList.getValue("VoterPhoneNo");
         String candidate = kvList.getValue("CandidateID");
-          if(numberList.contains(voterPhone) && tallyTable.containsKey(candidate)) {
+          if(!tallyTable.containsKey(candidate)) {
+            kvResult.addPair("MsgID", "711");
+            kvResult.addPair("Status", "2"); // Invalid
+          } else if(numberList.contains(voterPhone) && tallyTable.containsKey(candidate)) {
             // Repeat vote - nothing happens
             kvResult.addPair("MsgID", "711");
-            kvResult.addPair("Status", "2"); // Failure
+            kvResult.addPair("Status", "1"); // Duplicate
           } else {
               // Initial Vote - vote entered into tally table
             numberList.add(voterPhone);
             AtomicInteger atom = tallyTable.get(candidate);
             atom.getAndIncrement(); // increase vote number by 1
             kvResult.addPair("MsgID", "711");
-            kvResult.addPair("Status", "1"); // Success
+            kvResult.addPair("Status", "3"); // Valid
           } 
         break;
       case 702: // Request Report
