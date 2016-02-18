@@ -94,8 +94,6 @@ public class SISTask implements Runnable {
             InetAddress address = InetAddress.getByName(host);
             Socket socket = new Socket(address, port);
 
-            //System.out.println("Here");
-
             MsgEncoder encoder = new MsgEncoder(socket.getOutputStream());
             encoder.sendMsg(kvList);
 		}
