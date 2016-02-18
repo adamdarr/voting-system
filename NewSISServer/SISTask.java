@@ -14,6 +14,8 @@ public class SISTask implements Runnable {
     // message reader for a component
     private MsgDecoder decoder;
 
+    private Socket client;
+
     /*
      * Constructor (socket for a connection to that component)
      */
@@ -24,6 +26,15 @@ public class SISTask implements Runnable {
 
             // bind the message reader to inputstream of the reader
             this.decoder = new MsgDecoder(socket.getInputStream());
+
+            try {
+                String host = "localhost";
+                int port = 7999;
+                InetAddress address = InetAddress.getByName(host);
+                client = new Socket(address, port);
+            } catch (Exception e) {
+
+            }
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -89,13 +100,11 @@ public class SISTask implements Runnable {
     		System.out.println(kvList);
     		System.out.println("====================");
 
-            String host = "localhost";
-            int port = 7999;
-            InetAddress address = InetAddress.getByName(host);
-            Socket socket = new Socket(address, port);
-
-            MsgEncoder encoder = new MsgEncoder(socket.getOutputStream());
+            MsgEncoder encoder = new MsgEncoder(client.getOutputStream());
             encoder.sendMsg(kvList);
+
+            //MsgDecoder decoder = new MsgDecoder(socket.getInputStream());
+            //KeyValueList kvResult = decoder.getMsg();
 		}
 		
         String scope = kvList.getValue("Scope");
