@@ -47,8 +47,11 @@ Member #2 (last name): Clark Nicolas
      which will be printed on the poster on CS-Day)
 2.2 My smart phone  manufacturer, model number and
       other hardware details:
-      _________________________________________
-2.3 (  ) My smart phone runs Android and I know how
+      Samsung 
+      Galaxy S6 Edge
+      Model number SAMSUNG-SMG925A
+      Android version 5.1.1
+2.3 (X) My smart phone runs Android and I know how
       to develop an Android app as the input processor
       and another Android app as the VotingSoftware component
 2.4 (  ) My smart phone does not run Android but I know
@@ -57,8 +60,8 @@ Member #2 (last name): Clark Nicolas
       the following language:__________________
 2.5 (  ) My development platform is my smart phone
       (Note: This is not highly recommended)
-2.6 (  ) My development platform is my notebook or PC
-      running under:_________________ and I will be
+2.6 (X) My development platform is my notebook or PC
+      running under: Windows-Android Studio and I will be
       able to port the app to my smart phone.
 
 3. If you select 1.3, answer the following questions:
